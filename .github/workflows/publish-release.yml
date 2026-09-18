@@ -18,16 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout and setup environment
-        uses: MetaMask/action-checkout-and-setup@v2
+        uses: MetaMask/action-checkout-and-setup@29e23b68b9b868d31805d1adce431cb35fd2de83 # v2.0.1
         with:
           is-high-risk-environment: true
           ref: ${{ github.sha }}
-      - uses: MetaMask/action-publish-release@v3
+      - uses: MetaMask/action-publish-release@f01f1be110d60fb07d86c880ce3d6bdb353524d3 # v3.3.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn build
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
         with:
           name: publish-release-artifacts-${{ github.sha }}
           retention-days: 4
@@ -41,16 +41,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout and setup environment
-        uses: MetaMask/action-checkout-and-setup@v2
+        uses: MetaMask/action-checkout-and-setup@29e23b68b9b868d31805d1adce431cb35fd2de83 # v2.0.1
         with:
           is-high-risk-environment: true
           ref: ${{ github.sha }}
       - name: Restore build artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: publish-release-artifacts-${{ github.sha }}
       - name: Dry Run Publish
-        uses: MetaMask/action-npm-publish@v6
+        uses: MetaMask/action-npm-publish@18df42148c35aabb98e00f9fda127d421af141df # v6.5.0
         with:
           slack-webhook-url: ${{ secrets.SLACK_WEBHOOK_URL }}
           subteam: S042S7RE4AE # @metamask-npm-publishers
@@ -66,16 +66,16 @@ jobs:
       id-token: write
     steps:
       - name: Checkout and setup environment
-        uses: MetaMask/action-checkout-and-setup@v2
+        uses: MetaMask/action-checkout-and-setup@29e23b68b9b868d31805d1adce431cb35fd2de83 # v2.0.1
         with:
           is-high-risk-environment: true
           ref: ${{ github.sha }}
       - name: Restore build artifacts
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
         with:
           name: publish-release-artifacts-${{ github.sha }}
       - name: Publish
-        uses: MetaMask/action-npm-publish@v6
+        uses: MetaMask/action-npm-publish@18df42148c35aabb98e00f9fda127d421af141df # v6.5.0
         with:
           npm-token: ${{ secrets.NPM_TOKEN }}
         env:

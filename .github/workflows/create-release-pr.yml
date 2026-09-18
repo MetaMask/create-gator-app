@@ -22,13 +22,13 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout and setup environment
-        uses: MetaMask/action-checkout-and-setup@v2
+        uses: MetaMask/action-checkout-and-setup@29e23b68b9b868d31805d1adce431cb35fd2de83 # v2.0.1
         with:
           is-high-risk-environment: true
           fetch-depth: 0
           ref: ${{ github.event.inputs.base-branch }}
 
-      - uses: MetaMask/action-create-release-pr@v4
+      - uses: MetaMask/action-create-release-pr@268f95dd4099efbf661dd8ad7a979e7c8cc61ff9 # v4.0.0
         with:
           release-type: ${{ github.event.inputs.release-type }}
           release-version: ${{ github.event.inputs.release-version }}
